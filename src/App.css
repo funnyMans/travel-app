@@ -1,0 +1,98 @@
+.carousel-control-prev {
+  left: 16rem !important;
+}
+
+.carousel-control-next {
+  right: 16rem !important;
+}
+
+.zoom:hover {
+  transform: scale(1.05);
+  opacity: 1;
+  transition: 0.3s ease;
+}
+
+.paddingIncrease {
+  padding-top: 5rem;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  background: transparent;
+}
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  background-color: lightgray;
+}
+
+.carousel-control-prev {
+  left: 5.5rem !important;
+  margin-top: 5rem;
+  width: 5.5% !important;
+}
+.carousel-control-next {
+  right: 5.5rem !important;
+  margin-top: 5rem;
+  width: 5.5% !important;
+}
+
+.googleButton > button {
+  background-color: rgb(203, 63, 34) !important;
+  box-shadow: none !important;
+  width: 100%;
+}
+.googleButton > button:hover {
+  background-color: rgba(203, 63, 34, 0.1) !important;
+}
+.googleButton > button > span {
+  color: white;
+  font-size: 1rem;
+  font-weight: 900 !important;
+  margin: 0 auto;
+}
+.kep-login-facebook.metro {
+  background: transparent;
+  border: none !important;
+  transition: none;
+}
+
+.accountSet {
+  display: grid;
+  grid-template-columns: 1fr 1fr 4fr 1fr;
+  grid-template-areas: " . image cart . " " . folders cart .";
+  justify-content: center;
+  align-items: center;
+}
+
+.userImage {
+  grid-area: image;
+  width: 50%;
+  height: auto;
+  margin-top: 2rem;
+  margin-left: 3rem;
+}
+.navProfile {
+  grid-area: folders;
+  margin-bottom: 8rem;
+}
+.profItem {
+  grid-area: cart;
+  width: 90%;
+  height: 40rem;
+  margin-top: 5rem;
+  margin-left: 3rem;
+  border: 1px solid rgb(119, 119, 119, 0.2);
+  box-shadow: 0 10px 6px -6px #777;
+  padding: 30px;
+}
+
+.shadow-btn {
+  box-shadow: 20px 15px 10px 1px #777;
+}
+.borderImage {
+  border: 7px solid #777;
+}
+.close:active {
+  border: none;
+  background-color: transparent;
+}

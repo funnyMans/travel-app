@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import ls from "local-storage";
 import river from "../../images/river.jpg";
 import {
   Button,
@@ -11,8 +13,8 @@ import {
   Badge,
 } from "reactstrap";
 
-const UserImage = (props) => {
-  const { className } = props;
+function UserImage(props) {
+  const { className, image, name, email } = props;
 
   const [modal, setModal] = useState(false);
 
@@ -35,7 +37,7 @@ const UserImage = (props) => {
   return (
     <div className="userImage">
       <Button color="secondary" onClick={toggle}>
-        <img src={river} alt="user" className="w-100 h-auto" />
+        <img src={image} alt="user" className="w-100 h-auto" />
       </Button>
       <Modal
         isOpen={modal}
@@ -45,7 +47,7 @@ const UserImage = (props) => {
       >
         <ModalHeader>
           <img
-            src={river}
+            src={image}
             alt="user"
             className="w-100 h-auto rounded-pill borderImage"
           />
@@ -56,16 +58,10 @@ const UserImage = (props) => {
           </div>
           <ListGroup className="h4">
             <ListGroupItem className="justify-content-between">
-              Name: <Badge pill>Vladimir Petrosyan</Badge>
+              Name: <Badge pill>{name}</Badge>
             </ListGroupItem>
             <ListGroupItem className="justify-content-between">
-              Gender: <Badge pill>Male</Badge>
-            </ListGroupItem>
-            <ListGroupItem className="justify-content-between">
-              Age: <Badge pill>26</Badge>
-            </ListGroupItem>
-            <ListGroupItem className="justify-content-between">
-              Mail: <Badge pill>vl.petrosyan94@gmail.com</Badge>
+              E-Mail: <Badge pill>{email}</Badge>
             </ListGroupItem>
           </ListGroup>
         </ModalBody>
@@ -80,6 +76,28 @@ const UserImage = (props) => {
       </Modal>
     </div>
   );
+}
+
+const mapStateToProps = () => {
+  if (ls.get("state")[0].auth) {
+    return {
+      name: ls.get("state")[0].name,
+      image: ls.get("state")[0].image,
+      email: ls.get("state")[0].email,
+    };
+  } else if (ls.get("state")[1].auth) {
+    return {
+      name: ls.get("state")[1].name,
+      image: ls.get("state")[1].image,
+      email: ls.get("state")[1].email,
+    };
+  } else {
+    return {
+      name: "Unknown User",
+      image: river,
+      email: "unknownUser@gmail.com",
+    };
+  }
 };
 
-export default UserImage;
+export default connect(mapStateToProps, null)(UserImage);

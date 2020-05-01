@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import FbLoginSet from "./FbLoginSet";
-import GoogleLoginSet from "./GoogleLoginSet";
+import { connect } from "react-redux";
+import ls from "local-storage";
 import {
   Collapse,
   Navbar,
@@ -15,17 +15,30 @@ import {
   DropdownMenu,
   DropdownItem,
   Button,
-  ButtonDropdown,
   Form,
   Input,
 } from "reactstrap";
+import Logout from "./Logout";
+import LogInDropDown from "./LogInDropDown";
 
 const NavbarWrapper = (props) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [dropdownOpen, setOpen] = useState(false);
-
   const toggle = () => setIsOpen(!isOpen);
-  const dropdownToggle = () => setOpen(!dropdownOpen);
+
+  let setButton;
+  let setProfile;
+
+  if (props.auth1 || props.auth2) {
+    setButton = <Logout />;
+    setProfile = (
+      <NavLink href="/profile" className="zoom">
+        <span className="h4">Profile</span>
+      </NavLink>
+    );
+  } else {
+    setButton = <LogInDropDown />;
+    setProfile = null;
+  }
 
   return (
     <div>
@@ -41,11 +54,7 @@ const NavbarWrapper = (props) => {
                 <span className="h4">About Us</span>
               </NavLink>
             </NavItem>
-            <NavItem>
-              <NavLink href="/profile" className="zoom">
-                <span className="h4">Profile</span>
-              </NavLink>
-            </NavItem>
+            <NavItem>{setProfile}</NavItem>
             <UncontrolledDropdown nav inNavbar className="zoom">
               <DropdownToggle nav caret>
                 <span className="h4">Options</span>
@@ -57,30 +66,7 @@ const NavbarWrapper = (props) => {
                 <DropdownItem>Reset</DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
-            <ButtonDropdown isOpen={dropdownOpen} toggle={dropdownToggle}>
-              <DropdownToggle caret color="success">
-                <span className="font-weight-bold">Sign In</span>
-              </DropdownToggle>
-              <DropdownMenu>
-                <DropdownItem header>Sign in with:</DropdownItem>
-                <DropdownItem className="text-warning text-center">
-                  <FbLoginSet />
-                </DropdownItem>
-                <DropdownItem className="text-warning text-center">
-                  <GoogleLoginSet />
-                </DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem header className="text-center">
-                  or
-                </DropdownItem>
-                <DropdownItem className="text-center">
-                  {" "}
-                  <span className="d-block zoom text-primary font-weight-bold">
-                    Sign Up
-                  </span>
-                </DropdownItem>
-              </DropdownMenu>
-            </ButtonDropdown>
+            {setButton}
           </Nav>
           <Form className="form-inline">
             <Input type="search" placeholder="search" aria-label="Search" />
@@ -92,4 +78,10 @@ const NavbarWrapper = (props) => {
   );
 };
 
-export default NavbarWrapper;
+const mapStateToProps = () => {
+  return {
+    auth1: ls.get("state")[0].auth,
+    auth2: ls.get("state")[1].auth,
+  };
+};
+export default connect(mapStateToProps, null)(NavbarWrapper);

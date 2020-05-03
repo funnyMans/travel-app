@@ -13,6 +13,27 @@ const initialState = [
     image: "",
     email: "",
   },
+  [
+    {
+      name: "Yerevan",
+      image: "yerevan",
+    },
+    {
+      name: "Gyumri",
+      image: "gyumri",
+    },
+    {
+      name: "Vanadzor",
+      image: "vanadzor",
+    },
+    {
+      name: "Etchmiadzin",
+      image: "etchmiadzin",
+    },
+  ],
+  {
+    menuButton: "",
+  },
 ];
 
 export default initialState;

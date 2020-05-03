@@ -24,10 +24,16 @@ function Account(props) {
   return <div>{account}</div>;
 }
 
-const mapStateToProps = () => {
+const mapStateToProps = (state) => {
   return {
-    auth1: ls.get("state")[0].auth,
-    auth2: ls.get("state")[1].auth,
+    auth1:
+      ls.get("state[0]") !== null
+        ? ls.get("state[0]").auth
+        : state.fbResponseReducer.auth,
+    auth2:
+      ls.get("state[1]") !== null
+        ? ls.get("state[1]").auth
+        : state.googleResponseReducer.auth,
   };
 };
 

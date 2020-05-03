@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import "../../images/yerevan.jpg";
 import {
   TabContent,
   TabPane,
@@ -9,6 +11,7 @@ import {
   Button,
   CardTitle,
   CardText,
+  CardImg,
   Row,
   Col,
 } from "reactstrap";
@@ -20,6 +23,7 @@ const ContentTabs = (props) => {
   const toggle = (tab) => {
     if (activeTab !== tab) setActiveTab(tab);
   };
+  console.log(props.state);
 
   return (
     <div>
@@ -31,7 +35,7 @@ const ContentTabs = (props) => {
               toggle("1");
             }}
           >
-            Tab1
+            Cities
           </NavLink>
         </NavItem>
         <NavItem>
@@ -41,39 +45,42 @@ const ContentTabs = (props) => {
               toggle("2");
             }}
           >
-            Moar Tabs
+            Details
           </NavLink>
         </NavItem>
       </Nav>
       <TabContent activeTab={activeTab}>
         <TabPane tabId="1">
           <Row>
-            <Col sm="12">
-              <h4>Tab 1 Contents</h4>
-            </Col>
+            {props.state.map((it) => {
+              return (
+                <Col sm="3" className="mt-2">
+                  <Card body>
+                    <CardTitle className="text-center">
+                      <span className="font-weight-bolder">{it.name}</span>
+                    </CardTitle>
+
+                    <CardImg
+                      top
+                      width="100%"
+                      src={require(`../../images/${it.image}.jpg`)}
+                      alt="Card image cap"
+                    />
+                    <CardText>
+                      With supporting text below as a natural lead-in to
+                      additional content.
+                    </CardText>
+                    <Button>Go somewhere</Button>
+                  </Card>
+                </Col>
+              );
+            })}
           </Row>
         </TabPane>
         <TabPane tabId="2">
           <Row>
-            <Col sm="6">
-              <Card body>
-                <CardTitle>Special Title Treatment</CardTitle>
-                <CardText>
-                  With supporting text below as a natural lead-in to additional
-                  content.
-                </CardText>
-                <Button>Go somewhere</Button>
-              </Card>
-            </Col>
-            <Col sm="6">
-              <Card body>
-                <CardTitle>Special Title Treatment</CardTitle>
-                <CardText>
-                  With supporting text below as a natural lead-in to additional
-                  content.
-                </CardText>
-                <Button>Go somewhere</Button>
-              </Card>
+            <Col sm="12">
+              <h4>Tab 2 Contents</h4>
             </Col>
           </Row>
         </TabPane>
@@ -82,4 +89,12 @@ const ContentTabs = (props) => {
   );
 };
 
-export default ContentTabs;
+const mapStateToProps = (state) => {
+  console.log(state.listReducer[2]);
+
+  return {
+    state: state.listReducer,
+  };
+};
+
+export default connect(mapStateToProps, null)(ContentTabs);

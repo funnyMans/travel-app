@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import ls from "local-storage";
-import river from "../../images/river.jpg";
+//import river from "../../images/river.jpg";
 import {
   Button,
   Modal,
@@ -78,24 +78,18 @@ function UserImage(props) {
   );
 }
 
-const mapStateToProps = () => {
-  if (ls.get("state")[0].auth) {
+const mapStateToProps = (state) => {
+  if (state.fbResponseReducer.auth) {
     return {
-      name: ls.get("state")[0].name,
-      image: ls.get("state")[0].image,
-      email: ls.get("state")[0].email,
+      name: ls.get("state[0]").name,
+      image: ls.get("state[0]").image,
+      email: ls.get("state[0]").email,
     };
-  } else if (ls.get("state")[1].auth) {
+  } else if (state.googleResponseReducer.auth) {
     return {
-      name: ls.get("state")[1].name,
-      image: ls.get("state")[1].image,
-      email: ls.get("state")[1].email,
-    };
-  } else {
-    return {
-      name: "Unknown User",
-      image: river,
-      email: "unknownUser@gmail.com",
+      name: ls.get("state[1]").name,
+      image: ls.get("state[1]").image,
+      email: ls.get("state[1]").email,
     };
   }
 };

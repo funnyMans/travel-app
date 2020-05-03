@@ -78,10 +78,18 @@ const NavbarWrapper = (props) => {
   );
 };
 
-const mapStateToProps = () => {
+const mapStateToProps = (state) => {
+  console.log(ls.get("state[0]"));
+
   return {
-    auth1: ls.get("state")[0].auth,
-    auth2: ls.get("state")[1].auth,
+    auth1:
+      ls.get("state[0]") !== null
+        ? ls.get("state[0]").auth
+        : state.fbResponseReducer.auth,
+    auth2:
+      ls.get("state[1]") !== null
+        ? ls.get("state[1]").auth
+        : state.googleResponseReducer.auth,
   };
 };
 export default connect(mapStateToProps, null)(NavbarWrapper);

@@ -10,6 +10,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import initialState from "./Redux/reducers/initialState";
 
 const store = createStore(rootReducer, initialState, composeWithDevTools());
+console.log(store.getState());
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(

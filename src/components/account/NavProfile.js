@@ -1,7 +1,9 @@
 import React from "react";
 import { ButtonGroup, Button } from "reactstrap";
+import { connect } from "react-redux";
+import { handleCheckedButton, handleList } from "../../Redux/actions/index";
 
-export default function NavProfile() {
+function NavProfile(props) {
   return (
     <div className="navProfile">
       <ButtonGroup vertical>
@@ -11,7 +13,13 @@ export default function NavProfile() {
         <Button className="text-left rounded zoom ml-2 font-weight-bold btn-lg shadow-btn">
           My Trips
         </Button>
-        <Button className="text-left rounded zoom ml-2 font-weight-bold btn-lg shadow-btn">
+        <Button
+          className="text-left rounded zoom ml-2 font-weight-bold btn-lg shadow-btn"
+          onClick={() => {
+            props.checkCitiesButton();
+            props.setList();
+          }}
+        >
           Armenian Cities
         </Button>
         <Button className="text-left rounded zoom ml-2 font-weight-bold btn-lg shadow-btn">
@@ -24,3 +32,16 @@ export default function NavProfile() {
     </div>
   );
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    checkCitiesButton: () => {
+      dispatch(handleCheckedButton());
+    },
+    setList: () => {
+      dispatch(handleList());
+    },
+  };
+};
+
+export default connect(null, mapDispatchToProps)(NavProfile);

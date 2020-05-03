@@ -15,7 +15,7 @@ class Logout extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.fbResponseReducer[0].auth,
+    auth: state.fbResponseReducer.auth,
   };
 };
 const mapDispatchToProps = (dispatch) => {

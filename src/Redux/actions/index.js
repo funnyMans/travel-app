@@ -17,3 +17,15 @@ export const handleLogOut = () => {
     type: "LOG_OUT",
   };
 };
+
+export const handleCheckedButton = () => {
+  return {
+    type: "ARMENIAN_CITIES",
+  };
+};
+
+export const handleList = () => {
+  return {
+    type: "CITIES_LIST",
+  };
+};

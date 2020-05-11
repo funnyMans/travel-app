@@ -13,8 +13,8 @@ class LoginGoogle extends Component {
     return (
       <div className="googleButton">
         <GoogleLogin
-          clientId="923883866383-oana6vr59jh8ma9mbhq1pjvo9nr19ni4.apps.googleusercontent.com"
-          clientSecret="bx2GYc-tgixuJKwfKAYbEoFd"
+          clientId="923883866383-6kc3kdi97or9k88qruobailoan4jbvpk.apps.googleusercontent.com"
+          clientSecret="gw59aYKFcrEfEQJPwKMFVmzv"
           buttonText="LOGIN WITH GOOGLE"
           onSuccess={this.responseGoogle}
           onFailure={this.responseGoogle}

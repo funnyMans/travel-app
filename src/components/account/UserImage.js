@@ -79,13 +79,13 @@ function UserImage(props) {
 }
 
 const mapStateToProps = (state) => {
-  if (state.fbResponseReducer.auth) {
+  if (ls.get("state[0]").auth) {
     return {
       name: ls.get("state[0]").name,
       image: ls.get("state[0]").image,
       email: ls.get("state[0]").email,
     };
-  } else if (state.googleResponseReducer.auth) {
+  } else if (ls.get("state[1]").auth) {
     return {
       name: ls.get("state[1]").name,
       image: ls.get("state[1]").image,

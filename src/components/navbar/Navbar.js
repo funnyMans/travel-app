@@ -42,7 +42,7 @@ const NavbarWrapper = (props) => {
 
   return (
     <div>
-      <Navbar color="info" dark expand="sm" className="fixed-top w-75 mx-auto">
+      <Navbar color="info" dark expand="lg" className="fixed-top w-75 mx-auto">
         <NavbarBrand className="ml-4 zoom" href="/">
           <span className="font-weight-bold h2">Traveller.am</span>
         </NavbarBrand>
@@ -59,7 +59,7 @@ const NavbarWrapper = (props) => {
               <DropdownToggle nav caret>
                 <span className="h4">Options</span>
               </DropdownToggle>
-              <DropdownMenu right>
+              <DropdownMenu left>
                 <DropdownItem>Option 1</DropdownItem>
                 <DropdownItem>Option 2</DropdownItem>
                 <DropdownItem divider />
@@ -67,11 +67,11 @@ const NavbarWrapper = (props) => {
               </DropdownMenu>
             </UncontrolledDropdown>
             {setButton}
+            <Form className="form-inline">
+              <Input type="search" placeholder="search" aria-label="Search" />
+              <Button className="btn-dark">Search</Button>
+            </Form>
           </Nav>
-          <Form className="form-inline">
-            <Input type="search" placeholder="search" aria-label="Search" />
-            <Button className="btn-dark">Search</Button>
-          </Form>
         </Collapse>
       </Navbar>
     </div>
